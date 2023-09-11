@@ -527,7 +527,7 @@ Misc:AddDivider()
 Misc:AddLabel('JOIN OUR DISCORD! \ndiscord.gg/Y889sjNPz4', true)
 
 Credits:AddLabel('abel7878 - Scripter')
-Credits:AddLabel('leehassocials - Scripter')
+Credits:AddLabel('leehassocials/clamsham - Scripter')
 
 
 
