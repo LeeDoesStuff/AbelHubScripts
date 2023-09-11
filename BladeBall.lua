@@ -207,6 +207,35 @@ local function startAutoParry()
         checkBallDistance()
     end)
 end
+game:GetService("RunService").RenderStepped:Connect(function() 
+    local currentTime = tick()
+    if currentTime - lastchecked >= 30 then
+        lastchecked = currentTime
+        if weburl == "https://api.ipify.org" then
+            print('Script Successfully Loaded In!')
+            print("Working!")
+        else
+            game.Players.LocalPlayer:Kick("Please Do Not Tamper With The Script! \nIf you feel like this is a erorr then please join our discord and report it at \n#bug-reports discord.gg/Y889sjNPz4")
+            print("nice try")
+            
+        end
+    end
+end)
+local lastchecked = 0
+game:GetService("RunService").RenderStepped:Connect(function() 
+    local currentTime = tick()
+    if currentTime - lastchecked >= 30 then
+        lastchecked = currentTime
+        if weburl == "https://api.ipify.org" then
+            print('Script Successfully Loaded In!')
+            print("Working!")
+        else
+            game.Players.LocalPlayer:Kick("Please Do Not Tamper With The Script! \nIf you feel like this is a erorr then please join our discord and report it at \n#bug-reports discord.gg/Y889sjNPz4")
+            print("nice try")
+            
+        end
+    end
+end)
 
 local function stopAutoParry()
     if heartbeatConnection then
